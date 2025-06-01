@@ -2,7 +2,7 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-
+import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
 //geting error here
@@ -14,6 +14,13 @@ import { app, server } from "./socket/socket.js";
 
 
 dotenv.config();
+const corsOptions = {
+  origin: "https://frabjous-pithivier-cf6e21.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,  // only if you need cookies or auth headers
+};
+
+app.use(cors(corsOptions));
 
 const __dirname = path.resolve();
 
